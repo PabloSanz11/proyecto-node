@@ -21,8 +21,13 @@ function login()
         }
     }).then(function(res)
     {
-        console.log(res);
-        document.getElementById('input-estado').value = res.data.message;
+        if(res.data.code == 200)
+        {
+            window.location.href = "pagina-principal.html";
+        }else
+        {
+            document.getElementById('input-estado').value = res.data.message;
+        }
     }).catch(function(err){
         console.log(err);
     })
