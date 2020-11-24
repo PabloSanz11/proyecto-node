@@ -17,10 +17,10 @@ empleados.post("/", async (req, res, next) =>
             return res.status(201).json({code: 201, message: "Empleado registrado correctamente"});
         }
 
-        return res.status(500).json({code: 500, message: "El empleado no ha sido registrado"});
+        return res.status(200).json({code: 500, message: "El empleado no ha sido registrado"});
     }
 
-    return res.status(500).json({code: 500, message: "Campos incompletos"});
+    return res.status(200).json({code: 500, message: "Campos incompletos"});
 });
 
 empleados.delete("/:id([0-9]{1,3})", async (req, res, next) =>
@@ -34,7 +34,7 @@ empleados.delete("/:id([0-9]{1,3})", async (req, res, next) =>
         return res.status(200).json({code: 200, message: "Empleado Eliminado Correctamente"});
     }
 
-    return res.status(404).send({code: 404, message: "El empleado no ha sido encontrado"});
+    return res.status(200).send({code: 404, message: "El empleado no ha sido encontrado"});
 });
 
 empleados.put("/:id([0-9]{1,3})", async (req, res, next) =>
@@ -53,15 +53,15 @@ empleados.put("/:id([0-9]{1,3})", async (req, res, next) =>
             return res.status(200).json({code: 200, message: "Empleado Actualizado correctamente"});
         }
 
-        return res.status(500).json({code: 500, message: "Empleado NO Actualizado"});
+        return res.status(200).json({code: 500, message: "Empleado NO Actualizado"});
     }
 
-    return res.status(500).json({code: 500, message: "Campos incompletos"});
+    return res.status(200).json({code: 500, message: "Campos incompletos"});
 });
 
 empleados.get("/", async (req, res, next) =>
 {
-    const pkmn =  await db.query("SELECT * FROM empleados");
+    const pkmn = await db.query("SELECT * FROM empleados");
     return res.status(200).json({code: 200, message: pkmn});
 });
 

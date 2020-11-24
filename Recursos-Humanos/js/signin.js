@@ -2,12 +2,18 @@ window.onload = init;
 
 function init()
 {
-    document.querySelector('.btn-secondary').addEventListener('click', function()
+    if(!localStorage.getItem("token"))
     {
-        window.location.href = "login.html"; 
-    });
-
-    document.querySelector('.btn-primary').addEventListener('click', signin);
+        document.querySelector('.btn-secondary').addEventListener('click', function()
+        {
+            window.location.href = "login.html"; 
+        });
+    
+        document.querySelector('.btn-primary').addEventListener('click', signin);
+    }else
+    {
+        window.location.href = "pokedex.html";
+    }
 }
 
 function signin()

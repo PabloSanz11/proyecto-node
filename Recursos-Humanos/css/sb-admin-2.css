@@ -7646,6 +7646,7 @@ button.bg-dark:focus {
 
 .m-0 {
   margin: 0 !important;
+  float: left;
 }
 
 .mt-0,

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
 
   <title>Taller RH</title>
 
@@ -14,74 +11,47 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/pagina-principal.js"></script>
 
 </head>
 
 <body id="page-top">
-
   <div id="wrapper">
-
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="pagina-principal.html">
         <div class="sidebar-brand-icon rotate-n-15">
         </div>
-        <div class="sidebar-brand-text mx-3">Recursos Humanos </div>
+        <div class="sidebar-brand-text mx-3">Recursos Humanos</div>
       </a>
 
-      <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
       <div class="sidebar-heading">
         Opciones
       </div>
 
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="pagina-principal.html">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Tabla Empleados</span></a>
       </li>
 
-      <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
-      <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-
     </ul>
-    <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-      <!-- Main Content -->
       <div id="content">
-
-        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-          <!-- Sidebar Toggle (Topbar) -->
           <form class="form-inline">
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
               <i class="fa fa-bars"></i>
             </button>
           </form>
-
-          <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar empleado por nombre..." aria-label="Search" aria-describedby="basic-addon2">
@@ -92,18 +62,13 @@
               </div>
             </div>
           </form>
-
-          <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
-              <!-- Dropdown - Messages -->
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
+                <div class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar empleado por nombre..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
@@ -112,19 +77,15 @@
                       </button>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </li>
-
             <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="admin-nombre">Administrador</span>
                 <img class="img-profile rounded-circle" src="https://www.techsphere.io/assets/img/workshops/ai/ai-ibm-watson-main.jpg">
               </a>
-              <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -134,75 +95,48 @@
                 <div class="dropdown-divider"></div>
               </div>
             </li>
-
           </ul>
-
         </nav>
-        <!-- End of Topbar -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-          <h1 class="h3 mb-2 text-gray-800">Tabla de Empleados</h1>
-          <hr><br>
-          <!-- DataTales Example -->
+        <h1 class="h3 mb-2 text-gray-800" style="margin-left: 1em;">Empleados</h1>
+        <div id="busquedas">
+          <hr>
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Empleados registrados</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Resultado de Busqueda</h6>
+              <img src="https://image.flaticon.com/icons/png/512/106/106830.png" class="minimizar" alt="">
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>id</th>
-                      <th>Nombre</th>
-                      <th>Apellidos</th>
-                      <th>Telefono</th>
-                      <th>Correo</th>
-                      <th>Contraseña</th>
-                      <th>Dirección</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>Garrett Winters</td>
-                      <td>Accountant</td>
-                      <td>Tokyo</td>
-                      <td>63</td>
-                      <td>2011/07/25</td>
-                      <td>$170,750</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div class='empleado-prin' style="width: 100%;">
+                <div class='cards'>
+                    <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='' class='cards-img'>
+                    <hr>
+                    <input type='text' disabled class='empleado-input-bus' name='idEmpleado' value="1">
+                    <input type='text' class='empleado-input-bus' name='nombre' value="Juan Pablo">
+                    <input type='text' class='empleado-input-bus' name='apellidos' value="Sánchez Granados">
+                    <input type='text' class='empleado-input-bus' name='telefono' value="4425188409">
+                    <input type='mail' class='empleado-input-bus' name='correo' value="jpablosang11@gmail.com">
+                    <input type='password' class='empleado-input-bus' name='contrasena' value="pablito1234">
+                    <input type='text' class='empleado-input-bus' name='direccion' value="francisco i madero">
+                    <hr>
+                    <input type='image' class='editbtn' src='https://th.bing.com/th/id/OIP.lRJfLfst1TmsMtg3pXJ1AAHaHa?pid=Api&rs=1'>
+                    <input type='image' class='delbtn' src='https://th.bing.com/th/id/OIP.90bvTUGcCJqR0qsvzA85HQHaHx?pid=Api&rs=1'>
+                 </div>
               </div>
             </div>
           </div>
-
         </div>
-        <!-- /.container-fluid -->
-
+        <div class="container-fluid">
+          <hr>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Gestión de Empleados</h6>
+            </div>
+            <div class="card-body">
+            <div id="rowss">
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
@@ -210,20 +144,12 @@
           </div>
         </div>
       </footer>
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
-
   </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -236,26 +162,15 @@
         <div class="modal-body">Seleccione cerrar sesión si así lo desea.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Cerrar Sesión</a>
+          <a class="btn btn-primary" href="login.html" onclick="cerrarSesion();">Cerrar Sesión</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
 </body>
 
 </html>

@@ -5,20 +5,20 @@ const jwt = require('jsonwebtoken');
 
 validaciones.post("/registro", async (req,res,next) =>
 {
-    const {nombre, apellidos, telefono, correo, contrasena, direccion} = req.body;
+    const {correo, contrasena} = req.body;
 
-    if(nombre && apellidos && telefono && correo && direccion)
+    if(correo && contrasena)
     {
-        let query = "INSERT INTO empleados(nombre, apellidos, telefono, correo, contrasena, direccion)";
-        query += `VALUES ('${nombre}', '${apellidos}', '${telefono}', '${correo}', '${contrasena}', '${direccion}');`;
+        let query = "INSERT INTO administradores(correo, contrasena)";
+        query += `VALUES ('${correo}', '${contrasena}');`;
         const rows = await db.query(query);
 
         if(rows.affectedRows == 1)
         {
-            return res.status(201).json({code: 201, message: "Empleado registrado correctamente"});
+            return res.status(201).json({code: 201, message: "Administrador registrado correctamente"});
         }
 
-        return res.status(500).json({code: 500, message: "El empleado no ha sido registrado"});
+        return res.status(500).json({code: 500, message: "El Administrador no ha sido registrado"});
     }
 
     return res.status(500).json({code: 500, message: "Campos incompletos"});
@@ -30,7 +30,7 @@ validaciones.post("/inicio-sesion", async (req, res, next) =>
 
     if(correo && contrasena)
     {
-        const query = `SELECT * FROM empleados WHERE correo = '${correo}' AND contrasena = '${contrasena}';`;
+        const query = `SELECT * FROM administradores WHERE correo = '${correo}' AND contrasena = '${contrasena}';`;
         const rows = await db.query(query);
 
         if(rows.length == 1)
@@ -49,12 +49,6 @@ validaciones.post("/inicio-sesion", async (req, res, next) =>
     }
     
     return res.status(200).json({code: 500, message: "Campos incompletos"});
-});
-
-validaciones.get("/", async (req, res, next) =>
-{
-    const query = await db.query("SELECT * FROM empleados;");
-    return res.status(200).json({code: 200, message: query});
 });
 
 module.exports = validaciones;

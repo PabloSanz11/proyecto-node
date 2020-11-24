@@ -2,7 +2,13 @@ window.onload = init;
 
 function init()
 {
-    document.querySelector('.btn-entrar').addEventListener('click', login);
+    if(!localStorage.getItem("token"))
+    {
+        document.querySelector('.btn-entrar').addEventListener('click', login);
+    }else
+    {
+        window.location.href = "pagina-principal.html";
+    }
 }
 
 function login()
@@ -21,8 +27,9 @@ function login()
         }
     }).then(function(res)
     {
-        if(res.data.code == 200)
+        if(res.data.code === 200)
         {
+            localStorage.setItem("token", res.data.message);
             window.location.href = "pagina-principal.html";
         }else
         {
