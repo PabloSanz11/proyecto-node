@@ -52,16 +52,16 @@
               <i class="fa fa-bars"></i>
             </button>
           </form>
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar empleado por nombre..." aria-label="Search" aria-describedby="basic-addon2">
+              <input type="text" id="empleado-nombre" class="form-control bg-light border-0 small" placeholder="Buscar empleado por nombre..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
             </div>
-          </form>
+          </div>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -102,26 +102,12 @@
           <hr>
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Resultado de Busqueda</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Resultado(s) de Busqueda</h6>
               <img src="https://image.flaticon.com/icons/png/512/106/106830.png" class="minimizar" alt="">
             </div>
             <div class="card-body">
-              <div class='empleado-prin' style="width: 100%;">
-                <div class='cards'>
-                    <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='' class='cards-img'>
-                    <hr>
-                    <input type='text' disabled class='empleado-input-bus' name='idEmpleado' value="1">
-                    <input type='text' class='empleado-input-bus' name='nombre' value="Juan Pablo">
-                    <input type='text' class='empleado-input-bus' name='apellidos' value="Sánchez Granados">
-                    <input type='text' class='empleado-input-bus' name='telefono' value="4425188409">
-                    <input type='mail' class='empleado-input-bus' name='correo' value="jpablosang11@gmail.com">
-                    <input type='password' class='empleado-input-bus' name='contrasena' value="pablito1234">
-                    <input type='text' class='empleado-input-bus' name='direccion' value="francisco i madero">
-                    <hr>
-                    <input type='image' class='editbtn' src='https://th.bing.com/th/id/OIP.lRJfLfst1TmsMtg3pXJ1AAHaHa?pid=Api&rs=1'>
-                    <input type='image' class='delbtn' src='https://th.bing.com/th/id/OIP.90bvTUGcCJqR0qsvzA85HQHaHx?pid=Api&rs=1'>
-                 </div>
-              </div>
+                <div id="rows-busqueda">
+                </div>
             </div>
           </div>
         </div>
@@ -150,6 +136,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  <!-- CERRAR SESIÓN -->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -163,6 +150,46 @@
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="login.html" onclick="cerrarSesion();">Cerrar Sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOSTRAR CUANDO SE ELIMINA EL USUARIO -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar al empleado seleccionado?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Esta operación es irreversible, si esta seguro seleccione eliminar</p>
+          <input type="number" id="estado-bd-del" value="">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" type="button" data-dismiss="modal" id="delete">Eliminar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOSTRAR CUANDO SE ACTUALIZA EL USUARIO-->
+  <div class="modal fade" id="actuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Resultado de operación</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"><input type="text" disabled id="estado-bd-upd" value=""></div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Aceptar</button>
         </div>
       </div>
     </div>

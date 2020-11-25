@@ -82,7 +82,7 @@ empleados.get('/:id([0-9]{1,3})', async (req, res, next) =>
 empleados.get('/:name([A-Za-z]+)', async (req, res, next) =>
 {
     const nombre = req.params.name;
-    const pkmn = await db.query("SELECT * FROM empleados WHERE nombre = '" + nombre + "'");
+    const pkmn = await db.query("SELECT * FROM empleados WHERE nombre LIKE '"+'%' + nombre + '%'+"'");
 
     try 
     {
@@ -91,7 +91,7 @@ empleados.get('/:name([A-Za-z]+)', async (req, res, next) =>
             return res.status(200).json({code: 1, message: pkmn});
         }
 
-        return res.status(404).send({code: 404, message: "El empleado no ha sido encontrado"});
+        return res.status(200).send({code: 404, message: "El empleado no ha sido encontrado"});
     } catch (error) {
         console.log(error);
     }

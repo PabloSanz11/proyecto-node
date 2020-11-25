@@ -118,7 +118,7 @@
 
 #busquedas
 {
-    width: 80%;
+    width: 98%;
     padding-right: 0.75rem;
     padding-left: 0.75rem;
     margin-right: auto;
@@ -133,4 +133,23 @@
     text-align: center;
     font-size: medium;
     width: 70%;
+}
+
+#estado-bd-del
+{
+    border-style: none;
+    color:#858796;
+    width: 100%;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    display: none;
+}
+
+#estado-bd-upd
+{
+    border-style: none;
+    color:#858796;
+    width: 100%;
+    font-size: 1.2em;
+    margin-bottom: 1em;
 }

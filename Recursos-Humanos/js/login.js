@@ -15,8 +15,6 @@ function login()
 {
     var correo = document.getElementById('input-correo').value;
     var contrasena = document.getElementById('input-contrasena').value;
-    
-    console.log(correo, contrasena);
 
     axios({
         method: 'post',
