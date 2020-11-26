@@ -75,6 +75,7 @@ function mostrarEdit(id)
     {
         document.getElementById('estado-bd-upd').value = id;
         displayInput();
+        document.getElementById('estado-bd-upds').value = "Resultado de Operación";
         document.getElementById('update').addEventListener('click', actualizar);
     }
 }
@@ -108,6 +109,7 @@ function cerrarDiv()
             var contenedorBusquedas = document.getElementById('rows-busqueda');
             contenedorBusquedas.innerHTML = "";
             document.getElementById('busquedas').style.display = "none";
+            document.getElementById('gestion').style.display = "block";
         });
     }
 }
@@ -117,6 +119,7 @@ function mostrarDiv()
     var contenedorBusquedas = document.getElementById('rows-busqueda');
     contenedorBusquedas.innerHTML = "";
     document.getElementById('busquedas').style.display = "block";
+    document.getElementById('gestion').style.display = "none";
 }
 
 function entradas(div)
@@ -142,10 +145,11 @@ function entradas(div)
 function validarActualizar(id)
 {
     var inputs = document.querySelectorAll('.empleado-input');
+    var divMostrado = $("#gestion").is(":visible");
     var indice = 0;
     var total = 0;
     var campos = [];
-    var contador = 0;
+    var contador = 0; 
 
     for (let index = 0; index < inputs.length; index++) 
     {
@@ -153,19 +157,22 @@ function validarActualizar(id)
         {
             indice = index;
             total = indice + datosBD;
-            console.log(datosBD);
 
             for (let i = indice; i < total; i++) 
             {
                 if(contador < datosBD)
                 {
                     campos[contador] = document.querySelectorAll('.empleado-input')[i].value;
-                    console.log(document.querySelectorAll('.empleado-input')[i].value); //ACOMODAR GG
                 }
+
                 contador++;
             }
 
             contador = 0;
+            if(!divMostrado)
+            {
+                break;
+            }
         }
     }
 
@@ -180,7 +187,7 @@ function displayInput()
 
 function displayInputs(contenido)
 {
-    document.getElementById('estado-bd-upd').value = contenido;
+    document.getElementById('estado-bd-upds').value = contenido;
     document.getElementById('update').style.display = "none";
     document.getElementById('cancelar').innerHTML = "Cerrar";
 }

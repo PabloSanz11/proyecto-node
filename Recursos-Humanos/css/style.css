@@ -146,11 +146,17 @@
     display: none;
 }
 
-#estado-bd-upd
+#estado-bd-upd, #estado-bd-upds
 {
     border-style: none;
     color:#858796;
     width: 100%;
     font-size: 1.2em;
+    display: none;
     margin-bottom: 1em;
+}
+
+#estado-bd-upds
+{
+    display: block;
 }

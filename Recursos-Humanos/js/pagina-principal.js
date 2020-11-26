@@ -74,7 +74,7 @@ function actualizar()
 {
     id = document.getElementById('estado-bd-upd').value;
     campos = validarActualizar(id);
-    
+
     axios({
         method: 'put',
         url: url +'/empleados/'+campos[0],
@@ -98,11 +98,11 @@ function actualizar()
             init();
         }else
         {
-            document.getElementById('estado-bd-upd').value = res.data.message;
+            document.getElementById('estado-bd-upds').value = res.data.message;
         }
 
     }).catch(function(err){
-        document.getElementById('estado-bd-upd').value = err;
+        document.getElementById('estado-bd-upds').value = err;
     })
 }
 
@@ -123,6 +123,7 @@ function eliminar()
             }else
             {
                 document.getElementById('busquedas').style.display = "none";
+                document.getElementById('gestion').style.display = "block";
             }
         }else
         {
