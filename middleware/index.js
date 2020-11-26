@@ -1,4 +1,4 @@
 module.exports = (req, res, next) =>
 {
-    return res.status(200).json({code: 1, message: "Bienvenido al proyecto FInal de Node"});
+    return res.status(200).json({code: 1, message: "Bienvenido al proyecto Final de Node"});
 }
