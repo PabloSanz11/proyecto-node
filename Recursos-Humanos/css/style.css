@@ -109,7 +109,7 @@
     color:#08a7ae;
 }
 
-.minimizar
+#minimizar
 {
     width: 1.5em;
     cursor: pointer;
@@ -123,6 +123,7 @@
     padding-left: 0.75rem;
     margin-right: auto;
     margin-left: auto;
+    display: none;
 }
 
 .empleado-input-bus

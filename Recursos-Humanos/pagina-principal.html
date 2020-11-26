@@ -14,6 +14,7 @@
   <link href="css/style.css" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="js/pagina-principal.js"></script>
+  <script src="js/funciones.js"></script>
 
 </head>
 
@@ -103,7 +104,7 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Resultado(s) de Busqueda</h6>
-              <img src="https://image.flaticon.com/icons/png/512/106/106830.png" class="minimizar" alt="">
+              <img src="https://image.flaticon.com/icons/png/512/106/106830.png" id="minimizar" alt="">
             </div>
             <div class="card-body">
                 <div id="rows-busqueda">
@@ -182,14 +183,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Resultado de operación</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea actualizar los datos del empleado?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body"><input type="text" disabled id="estado-bd-upd" value=""></div>
+        <div class="modal-body">
+          <p>Los datos seran actualizados, si desea continuar seleccione actualizar.</p>
+          <input type="text" disabled id="estado-bd-upd" value="">
+        </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Aceptar</button>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal" id="cancelar">Cancelar</button>
+          <button class="btn btn-primary" type="button" id="update">Actualizar</button>
         </div>
       </div>
     </div>

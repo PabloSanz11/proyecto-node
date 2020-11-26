@@ -90,7 +90,6 @@ empleados.get('/:name([A-Za-z]+)', async (req, res, next) =>
         {
             return res.status(200).json({code: 1, message: pkmn});
         }
-
         return res.status(200).send({code: 404, message: "El empleado no ha sido encontrado"});
     } catch (error) {
         console.log(error);
