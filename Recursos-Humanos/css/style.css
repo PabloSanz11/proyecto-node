@@ -1,0 +1,162 @@
+#input-estado
+{
+    width: 100%;
+    text-align: center;
+    font-size: .9em;
+    border-style: none;
+    color:#a5081e;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+.rowss
+{
+    margin: 0 -2px;
+    padding-bottom: 1em;
+    align-items: center;
+}
+  
+  /* Clear floats after the columns */
+.rowss:after 
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+  
+
+.empleado-prin 
+{
+    float: left;
+    width: 24%;
+    padding: 0 10px;
+    margin-left: .6em;
+    margin-bottom: 1em;
+    font-size: medium;
+    background-size: 100%;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) 
+{
+    .empleado-prin 
+    {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+}
+  
+  /* Style the counter cards */
+.cards
+{
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    align-items: center;
+    background-color: #3f3f3f;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.cards-info
+{
+    box-shadow: 0 0 20px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: auto;
+    margin-top: -10px;
+    padding-top: 10px;
+    align-items: center;
+    background-color: #3f3f3f;
+    background-color: #ffffff;
+}
+
+.cards-img
+{
+    width: 3em;
+    border-radius: 30px;
+}
+
+.editbtn, .savebtn, .updbtn
+{
+    float: center;
+    width: 1.2em;
+}
+
+.delbtn
+{
+    margin-left: 1em;
+    width: 1.2em;
+}
+
+.updbtn
+{
+    display: none;
+}
+
+.empleado-input, .empleado-input-add
+{
+    border-style: none;
+    color:#858796;
+    text-align: center;
+    font-size: medium;
+    width: 100%;
+    margin-top: .5em;
+}
+
+#estado-add
+{
+    color:#08a7ae;
+}
+
+#minimizar
+{
+    width: 1.5em;
+    cursor: pointer;
+    float: right;
+}
+
+#busquedas
+{
+    width: 98%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: none;
+}
+
+.empleado-input-bus
+{
+    text-align: center;
+    border-style: none;
+    color:#858796;
+    text-align: center;
+    font-size: medium;
+    width: 70%;
+}
+
+#estado-bd-del
+{
+    border-style: none;
+    color:#858796;
+    width: 100%;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    display: none;
+}
+
+#estado-bd-upd, #estado-bd-upds
+{
+    border-style: none;
+    color:#858796;
+    width: 100%;
+    font-size: 1.2em;
+    display: none;
+    margin-bottom: 1em;
+}
+
+#estado-bd-upds
+{
+    display: block;
+}
