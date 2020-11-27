@@ -1,9 +1,9 @@
 window.onload = init;
 
 var headers = {};
-var url = "https://proyecto-final-node-jpsg.herokuapp.com";
+var url = 'https://proyecto-final-node-jpsg.herokuapp.com';
 var datosBD = 7;
-var resultadosBusqueda = [];
+var tamanoBusqueda = 0;
 
 function init()
 {
@@ -12,7 +12,7 @@ function init()
         headers = { headers: {'Authorization': "bearer " + localStorage.getItem("token")}}
         document.querySelector('.btn-primary').addEventListener('click', busqueda);
         cargarDatos();
-        cerrarDiv();
+        cerrarBusquedas();
     }else
     {
         window.location.href = "login.html";
@@ -24,7 +24,7 @@ function cargarDatos()
     axios.get(url + '/empleados', headers)
     .then(function(res)
     {
-        mostrarDatos(res.data.message);
+        mostrarDivs(res.data.message);
     }).catch(function(err){
         console.log(err);
     })
@@ -93,7 +93,7 @@ function actualizar()
     {
         if(res.data.code === 200)
         {
-            displayInputs(res.data.message);
+            mostrarResultado(res.data.message);
             campos= [];
             init();
         }else
@@ -106,10 +106,40 @@ function actualizar()
     })
 }
 
+function busqueda()
+{
+    var inputBusqueda = document.getElementById('empleado-nombre').value;
+    var divBusquedas = document.getElementById('rows-busqueda');
+    var primerNombre = inputBusqueda.split(' ');
+
+    if(inputBusqueda.length > 0)
+    {
+        axios.get(url + '/empleados/'+ primerNombre[0], headers)
+        .then(function(res)
+        {
+            if(res.data.code == 1)
+            {
+                tamanoBusqueda = res.data.message.length;
+                mostrarBusquedas();
+                generarHtml(res.data.message, divBusquedas);
+            }else
+            {
+                alert("Empleado no encontrado");
+            }
+        }).catch(function(err){
+            console.log(err);
+        })
+    }else
+    {
+        alert("Proporcione el nombre de algún empleado");
+    }
+
+}
+
 function eliminar()
 {
     id = document.getElementById('estado-bd-del').value;
-    valores = resultadosBusqueda[0];
+    cantidadEmpleados = tamanoBusqueda;
 
     axios.delete(url + '/empleados/'+ id, headers)
     .then(function(res)
@@ -117,7 +147,7 @@ function eliminar()
         if(res.data.code === 200)
         {
             init();
-            if(valores > 1)
+            if(cantidadEmpleados > 1)
             {
                 busqueda();
             }else
@@ -132,34 +162,4 @@ function eliminar()
     }).catch(function(err){
         console.log(err);
     })
-}
-
-function busqueda()
-{
-    var nombre = document.getElementById('empleado-nombre').value;
-    var contenedorBusquedas = document.getElementById('rows-busqueda');
-    var primerNombre = nombre.split(' ');
-
-    if(nombre.length > 0)
-    {
-        axios.get(url + '/empleados/'+ primerNombre[0], headers)
-        .then(function(res)
-        {
-            if(res.data.code == 1)
-            {
-                resultadosBusqueda[0] = res.data.message.length;
-                mostrarDiv();
-                generarHtml(res.data.message, contenedorBusquedas);
-            }else
-            {
-                alert("Empleado no encontrado");
-            }
-        }).catch(function(err){
-            console.log(err);
-        })
-    }else
-    {
-        alert("Proporcione el nombre de algún empleado");
-    }
-
 }

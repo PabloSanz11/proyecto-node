@@ -24,13 +24,13 @@ function generarHtml(datos, div)
     $('.editbtn').focus(function()
     {
         var id = this.id;
-        mostrarEdit(id);
+        enviarEdit(id);
     });
             
     $('.delbtn').focus(function()
     {
         var id = this.id;
-        mostrarEliminar(id);
+        enviarDelete(id);
     });
 
     $('.savebtn').focus(function()
@@ -41,7 +41,7 @@ function generarHtml(datos, div)
 
 function validar(nombre, apellidos, telefono, correo, contrasena, direccion)
 {
-    if(nombre.length > 0 && apellidos.length > 0 && telefono.length > 0 && correo.length > 0 && contrasena.length > 3 && direccion.length > 0)
+    if(nombre.length > 0 && apellidos.length > 0 && telefono.length > 0 && correo.length > 0 && correo.includes("@") &&contrasena.length > 4 && direccion.length > 0)
     {
         return true;
     }else
@@ -52,15 +52,15 @@ function validar(nombre, apellidos, telefono, correo, contrasena, direccion)
     }
 }
 
-function mostrarDatos(empleados)
+function mostrarDivs(empleados)
 {
     var contenedorEmpleados = document.getElementById('rowss');
     contenedorEmpleados.innerHTML = "";
-    entradas(contenedorEmpleados)
+    cajaEntrada(contenedorEmpleados)
     generarHtml(empleados,contenedorEmpleados)
 }
 
-function mostrarEliminar(id)
+function enviarDelete(id)
 {
     if(document.getElementById('delete'))
     {
@@ -69,7 +69,7 @@ function mostrarEliminar(id)
     }
 }
 
-function mostrarEdit(id)
+function enviarEdit(id)
 {
     if(document.getElementById('update'))
     {
@@ -80,7 +80,7 @@ function mostrarEdit(id)
     }
 }
 
-function entradas(div)
+function cajaEntrada(div)
 {
     div.innerHTML +=
     `<div class='empleado-prin'>
@@ -100,7 +100,7 @@ function entradas(div)
     </div>`;
 }
 
-function cerrarDiv()
+function cerrarBusquedas()
 {
     if(document.getElementById('minimizar'))
     {
@@ -114,7 +114,7 @@ function cerrarDiv()
     }
 }
 
-function mostrarDiv()
+function mostrarBusquedas()
 {
     var contenedorBusquedas = document.getElementById('rows-busqueda');
     contenedorBusquedas.innerHTML = "";
@@ -122,7 +122,7 @@ function mostrarDiv()
     document.getElementById('gestion').style.display = "none";
 }
 
-function entradas(div)
+function cajaEntrada(div)
 {
     div.innerHTML +=
     `<div class='empleado-prin'>
@@ -145,9 +145,9 @@ function entradas(div)
 function validarActualizar(id)
 {
     var inputs = document.querySelectorAll('.empleado-input');
-    var divMostrado = $("#gestion").is(":visible");
+    var divGestion = $("#gestion").is(":visible");
     var indice = 0;
-    var total = 0;
+    var limite = 0;
     var campos = [];
     var contador = 0; 
 
@@ -156,9 +156,9 @@ function validarActualizar(id)
         if(id == inputs[index].value)
         {
             indice = index;
-            total = indice + datosBD;
+            limite = indice + datosBD;
 
-            for (let i = indice; i < total; i++) 
+            for (let i = indice; i < limite; i++) 
             {
                 if(contador < datosBD)
                 {
@@ -169,7 +169,7 @@ function validarActualizar(id)
             }
 
             contador = 0;
-            if(!divMostrado)
+            if(!divGestion)
             {
                 break;
             }
@@ -185,7 +185,7 @@ function displayInput()
     document.getElementById('cancelar').innerHTML = "Cancelar";
 }
 
-function displayInputs(contenido)
+function mostrarResultado(contenido)
 {
     document.getElementById('estado-bd-upds').value = contenido;
     document.getElementById('update').style.display = "none";
