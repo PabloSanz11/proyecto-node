@@ -1,7 +1,7 @@
 window.onload = init;
 
 var headers = {};
-var url = "https://proyecto-final-node-jpsg.herokuapp.com/";
+var url = "https://proyecto-final-node-jpsg.herokuapp.com";
 var datosBD = 7;
 var resultadosBusqueda = [];
 
