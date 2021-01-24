@@ -1,9 +1,7 @@
-function generarHtml(datos, div)
-{
-    for(let i = 0; i < datos.length; i++)
-    {
+function generarHtml(datos, div) {
+    for (let i = 0; i < datos.length; i++) {
         div.innerHTML +=
-        `<div class='empleado-prin'>
+            `<div class='empleado-prin'>
             <div class='cards'>
                 <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='' class='cards-img'>
                 <hr>
@@ -21,58 +19,47 @@ function generarHtml(datos, div)
         </div>`;
     }
 
-    $('.editbtn').focus(function()
-    {
+    $('.editbtn').focus(function() {
         var id = this.id;
         enviarEdit(id);
     });
-            
-    $('.delbtn').focus(function()
-    {
+
+    $('.delbtn').focus(function() {
         var id = this.id;
         enviarDelete(id);
     });
 
-    $('.savebtn').focus(function()
-    {
+    $('.savebtn').focus(function() {
         agregar();
     });
 }
 
-function validar(nombre, apellidos, telefono, correo, contrasena, direccion)
-{
-    if(nombre.length > 0 && apellidos.length > 0 && telefono.length > 0 && correo.length > 0 && correo.includes("@") &&contrasena.length > 4 && direccion.length > 0)
-    {
+function validar(nombre, apellidos, telefono, correo, contrasena, direccion) {
+    if (nombre.length > 0 && apellidos.length > 0 && telefono.length > 0 && correo.length > 0 && correo.includes("@") && contrasena.length > 4 && direccion.length > 0) {
         return true;
-    }else
-    {
+    } else {
         document.getElementById('estado-add').value = "Campos incompletos";
         document.getElementById('estado-add').style.color = "magenta";
         return false;
     }
 }
 
-function mostrarDivs(empleados)
-{
+function mostrarDivs(empleados) {
     var contenedorEmpleados = document.getElementById('rowss');
     contenedorEmpleados.innerHTML = "";
     cajaEntrada(contenedorEmpleados)
-    generarHtml(empleados,contenedorEmpleados)
+    generarHtml(empleados, contenedorEmpleados)
 }
 
-function enviarDelete(id)
-{
-    if(document.getElementById('delete'))
-    {
+function enviarDelete(id) {
+    if (document.getElementById('delete')) {
         document.getElementById('estado-bd-del').value = id;
         document.getElementById('delete').addEventListener('click', eliminar);
     }
 }
 
-function enviarEdit(id)
-{
-    if(document.getElementById('update'))
-    {
+function enviarEdit(id) {
+    if (document.getElementById('update')) {
         document.getElementById('estado-bd-upd').value = id;
         displayInput();
         document.getElementById('estado-bd-upds').value = "Resultado de Operación";
@@ -80,10 +67,9 @@ function enviarEdit(id)
     }
 }
 
-function cajaEntrada(div)
-{
+function cajaEntrada(div) {
     div.innerHTML +=
-    `<div class='empleado-prin'>
+        `<div class='empleado-prin'>
         <div class='cards'>
             <img src='https://m.media-amazon.com/images/S/aplus-media/vc/4bca2806-3c03-4f11-ac48-c78227cea8f1._SL300__.jpg' alt='' class='cards-img'>
             <hr>
@@ -100,12 +86,9 @@ function cajaEntrada(div)
     </div>`;
 }
 
-function cerrarBusquedas()
-{
-    if(document.getElementById('minimizar'))
-    {
-        document.getElementById('minimizar').addEventListener('click', function()
-        {
+function cerrarBusquedas() {
+    if (document.getElementById('minimizar')) {
+        document.getElementById('minimizar').addEventListener('click', function() {
             var contenedorBusquedas = document.getElementById('rows-busqueda');
             contenedorBusquedas.innerHTML = "";
             document.getElementById('busquedas').style.display = "none";
@@ -114,18 +97,16 @@ function cerrarBusquedas()
     }
 }
 
-function mostrarBusquedas()
-{
+function mostrarBusquedas() {
     var contenedorBusquedas = document.getElementById('rows-busqueda');
     contenedorBusquedas.innerHTML = "";
     document.getElementById('busquedas').style.display = "block";
     document.getElementById('gestion').style.display = "none";
 }
 
-function cajaEntrada(div)
-{
+function cajaEntrada(div) {
     div.innerHTML +=
-    `<div class='empleado-prin'>
+        `<div class='empleado-prin'>
         <div class='cards'>
             <img src='https://m.media-amazon.com/images/S/aplus-media/vc/4bca2806-3c03-4f11-ac48-c78227cea8f1._SL300__.jpg' alt='' class='cards-img'>
             <hr>
@@ -142,26 +123,21 @@ function cajaEntrada(div)
     </div>`;
 }
 
-function validarActualizar(id)
-{
+function validarActualizar(id) {
     var inputs = document.querySelectorAll('.empleado-input');
     var divGestion = $("#gestion").is(":visible");
     var indice = 0;
     var limite = 0;
     var campos = [];
-    var contador = 0; 
+    var contador = 0;
 
-    for (let index = 0; index < inputs.length; index++) 
-    {
-        if(id == inputs[index].value)
-        {
+    for (let index = 0; index < inputs.length; index++) {
+        if (id == inputs[index].value) {
             indice = index;
             limite = indice + datosBD;
 
-            for (let i = indice; i < limite; i++) 
-            {
-                if(contador < datosBD)
-                {
+            for (let i = indice; i < limite; i++) {
+                if (contador < datosBD) {
                     campos[contador] = document.querySelectorAll('.empleado-input')[i].value;
                 }
 
@@ -169,8 +145,7 @@ function validarActualizar(id)
             }
 
             contador = 0;
-            if(!divGestion)
-            {
+            if (!divGestion) {
                 break;
             }
         }
@@ -179,20 +154,17 @@ function validarActualizar(id)
     return campos;
 }
 
-function displayInput()
-{
+function displayInput() {
     document.getElementById('update').style.display = "block";
     document.getElementById('cancelar').innerHTML = "Cancelar";
 }
 
-function mostrarResultado(contenido)
-{
+function mostrarResultado(contenido) {
     document.getElementById('estado-bd-upds').value = contenido;
     document.getElementById('update').style.display = "none";
     document.getElementById('cancelar').innerHTML = "Cerrar";
 }
 
-function cerrarSesion()
-{
+function cerrarSesion() {
     localStorage.removeItem("token");
 }
